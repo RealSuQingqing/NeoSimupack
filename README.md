@@ -6,7 +6,7 @@
 [![NeoForge](https://img.shields.io/badge/NeoForge-21.1.228%2B-E88E33.svg)](https://neoforged.net/)
 
 **A building pack manager and workshop for [New: Sim-U-Kraft](https://modrinth.com/mod/new-sim-u-kraft).**
-**《新模拟都市》（New: Sim-U-Kraft）的拓展包管理器与创作工坊。**
+**《新：模拟大都市》（New: Sim-U-Kraft）的拓展包管理器与创作工坊。**
 
 **[English](#english)** | **[中文](#中文)**
 
@@ -21,7 +21,7 @@ the job of finding, validating, installing, converting and updating **building
 packs** — the content packs that give Sim-U-Kraft its buildings — and adds an
 in-game workshop for authoring them.
 
-The mod is under active development. The current version is `0.0.4`, and the pack
+The mod is under active development. The current version is `2.0.0`, and the pack
 format may still change between releases.
 
 ### Features
@@ -84,7 +84,7 @@ cd NeoSimupack
 gradlew.bat build        # Windows
 ```
 
-The mod jar is written to `build/libs/simupack-1.21.1-0.0.4.jar`.
+The mod jar is written to `build/libs/simupack-1.21.1-2.0.0.jar`.
 
 ```bash
 ./gradlew test           # JUnit 5 unit tests
@@ -153,11 +153,11 @@ purpose. See [LICENSE](LICENSE) for the full text.
 
 ### 这是什么
 
-NeoSimupack（`simupack`，游戏内显示名 **筑艺坊**）是《新模拟都市》（New: Sim-U-Kraft）
+NeoSimupack（`simupack`，游戏内显示名 **筑艺坊**）是《新：模拟大都市》（New: Sim-U-Kraft）
 的 NeoForge 附属模组。它负责**拓展包**的查找、校验、安装、转换与更新——拓展包正是为
 Sim-U-Kraft 提供建筑内容的数据包——并内置了一个用于创作建筑的工坊。
 
-本模组仍在积极开发中。当前版本为 `0.0.4`，拓展包格式在正式稳定前仍可能发生变化。
+本模组仍在积极开发中。当前版本为 `2.0.0`，拓展包格式在正式稳定前仍可能发生变化。
 
 ### 功能
 
@@ -185,7 +185,7 @@ Sim-U-Kraft 提供建筑内容的数据包——并内置了一个用于创作�
 | Minecraft | 1.21.1 |
 | NeoForge | 21.1.228 或更高 |
 | [LDLib2](https://github.com/Low-Drag-MC/LDLib2) | 2.2.41 或更高 |
-| [新模拟都市 (New: Sim-U-Kraft)](https://modrinth.com/mod/new-sim-u-kraft) | 2.0.0 或更高 |
+| [新：模拟大都市 (New: Sim-U-Kraft)](https://modrinth.com/mod/new-sim-u-kraft) | 2.0.0 或更高 |
 
 由于拓展包清单会在客户端与服务端之间比对，请确保两端启用相同的拓展包集合。
 
@@ -195,7 +195,7 @@ Sim-U-Kraft 提供建筑内容的数据包——并内置了一个用于创作�
 [Build 工作流](https://github.com/RealSuQingqing/NeoSimupack/actions/workflows/build.yml)
 最近一次成功运行的产物中获取 jar。
 
-将 jar 放入 `mods/` 文件夹，与 NeoForge、LDLib2 和《新模拟都市》一同安装。
+将 jar 放入 `mods/` 文件夹，与 NeoForge、LDLib2 和《新：模拟大都市》一同安装。
 
 ### 从源码构建
 
@@ -209,22 +209,22 @@ cd NeoSimupack
 gradlew.bat build        # Windows
 ```
 
-构建产物位于 `build/libs/simupack-1.21.1-0.0.4.jar`。
+构建产物位于 `build/libs/simupack-1.21.1-2.0.0.jar`。
 
 ```bash
 ./gradlew test           # JUnit 5 单元测试
 ./gradlew runClient      # 开发环境客户端
 ```
 
-#### 关于《新模拟都市》的 jar
+#### 关于《新：模拟大都市》的 jar
 
 `build.gradle` 会在项目根目录查找 `New-Sim-U-Kraft-2.2.0-neoforge-1.21.1.jar`。
 若该文件存在，它会被加入开发运行时的类路径（`compileOnly` + `localRuntime`）；该 jar
 **不会**被提交到仓库，因为它属于第三方二进制文件。
 
-构建与运行测试都不需要它。NeoSimupack 完全通过反射访问《新模拟都市》的类，不存在任何
+构建与运行测试都不需要它。NeoSimupack 完全通过反射访问《新：模拟大都市》的类，不存在任何
 编译期引用，因此本项目在没有该 jar 的情况下也能正常编译。只有当你需要在开发客户端中
-真正加载《新模拟都市》时才需要它。请从
+真正加载《新：模拟大都市》时才需要它。请从
 [Modrinth](https://modrinth.com/mod/new-sim-u-kraft) 下载，并保持上文的文件名不变。
 
 ### 仓库结构
@@ -249,7 +249,7 @@ LDLib2 与此模组的版本号，以及相关的日志片段。
 
 ### 致谢
 
-- [新模拟都市 (New: Sim-U-Kraft)](https://modrinth.com/mod/new-sim-u-kraft)，作者 NSUK Studio
+- [新：模拟大都市 (New: Sim-U-Kraft)](https://modrinth.com/mod/new-sim-u-kraft)，作者 NSUK Studio
   —— 本模组所扩展的对象。NeoSimupack 不打包、也不再分发该模组。
 - [LDLib2](https://github.com/Low-Drag-MC/LDLib2)，作者 KilaBash 及贡献者 —— 界面所依赖的
   UI 框架。

@@ -1,0 +1,56 @@
+name: Feature Request
+description: Suggest a new capability or an improvement for NeoSimupack.
+title: "[Feature] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping shape NeoSimupack. Please describe the problem you
+        are running into, not only the solution you have in mind — that leaves
+        room for a better solution to be found.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: The workflow that is missing, awkward, or impossible today.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What you would like NeoSimupack to do.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Workarounds you already tried, or other designs you weighed.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part of the mod does this touch?
+      options:
+        - Building pack manager / pack loading
+        - Pack editor
+        - "New: Sim-U-Kraft integration"
+        - Pack update / version checking
+        - User interface
+        - Something else
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I have searched the existing issues for a duplicate request.
+          required: true

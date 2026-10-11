@@ -1,0 +1,14 @@
+# Blank issues are disabled so that every report arrives with the version
+# information needed to reproduce it. Use the links below for anything that is
+# not a NeoSimupack bug or feature request.
+blank_issues_enabled: false
+contact_links:
+  - name: "New: Sim-U-Kraft — bug reports and support"
+    url: https://modrinth.com/mod/new-sim-u-kraft
+    about: "NeoSimupack is an add-on. Problems inside New: Sim-U-Kraft must be reported to that project."
+  - name: LDLib2 — bug reports and support
+    url: https://github.com/Low-Drag-MC/LDLib2
+    about: UI framework used by NeoSimupack. Report rendering or widget problems here.
+  - name: NeoForge — support
+    url: https://github.com/neoforged/NeoForge/issues
+    about: Loader-level problems, such as the game failing to start before any mod loads.

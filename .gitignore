@@ -1,0 +1,79 @@
+# ==============================================================================
+#  NeoSimupack — this repository contains the mod source only.
+#  Everything below is generated output, machine-specific configuration, or
+#  authoring-workspace scratch that is deliberately not part of the mod.
+# ==============================================================================
+
+# ---- Gradle / build output ---------------------------------------------------
+build/
+.gradle/
+.gradle_repo/
+out/
+repo/
+bin/
+
+# ---- Development run directories (created by runClient/runServer/runData) -----
+run/
+runs/
+run-data/
+runtime/
+
+# ---- IDE / editor ------------------------------------------------------------
+.idea/
+*.iml
+*.ipr
+*.iws
+.settings/
+.classpath
+.project
+.metadata
+eclipse/
+*.launch
+
+# VS Code launch configs embed absolute per-machine paths.
+.vscode/
+
+# ---- OS / editor junk --------------------------------------------------------
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.bak
+
+# ---- Logs and JVM crash dumps ------------------------------------------------
+*.log
+hs_err_pid*.log
+replay_pid*.log
+
+# ---- Binary artifacts --------------------------------------------------------
+# Dependency jars are fetched from their official distribution (see README),
+# never committed. The Gradle wrapper jar is the one exception.
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# ---- Local Windows launcher scripts ------------------------------------------
+# The mod itself builds with ./gradlew (or gradlew.bat on Windows).
+/*.bat
+/*.exe
+!/gradlew.bat
+
+# ---- Authoring workspace, not part of the mod --------------------------------
+/backups/
+/tools/
+/net/
+/data/
+/libs/
+/.ldlib_inv/
+/.rename0a_backup/
+/.first_run_lock
+
+# ---- Local planning notes ----------------------------------------------------
+# Deliberately kept out of the public history. Delete these lines to publish them.
+/SIMUPACK_*.md
+/MIGRATION_*.md
+/PACKMANAGER_*.md
+/NSUK_STOCK_BUG_REPORT.md
+
+# ---- Local scratch downloads / decompiler output -----------------------------
+/93744
+/-1

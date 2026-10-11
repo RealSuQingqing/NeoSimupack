@@ -1,0 +1,103 @@
+name: Bug Report
+description: Something in NeoSimupack is broken, crashes, or behaves unexpectedly.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report.
+
+        Before you continue, please check that:
+
+        - you are running **Minecraft 1.21.1** with a **NeoForge** build >= 21.1.228;
+        - **LDLib2** >= 2.2.41 and **New: Sim-U-Kraft** >= 2.0.0 are installed;
+        - the same problem does **not** already have an open issue.
+
+        If your report is about New: Sim-U-Kraft itself, please file it with that
+        project instead — NeoSimupack only talks to it through reflection and
+        cannot fix it from here.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug, and what you expected to happen instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered steps that let someone else trigger the bug.
+      placeholder: |
+        1. Launch the game with ...
+        2. Open the building pack manager ...
+        3. Click on ...
+        4. The game crashes / the entry disappears
+    validations:
+      required: true
+
+  - type: input
+    id: mod-version
+    attributes:
+      label: NeoSimupack version
+      description: Shown in the mod list, or the jar file name.
+      placeholder: 0.0.4
+    validations:
+      required: true
+
+  - type: input
+    id: neoforge-version
+    attributes:
+      label: NeoForge version
+      placeholder: 21.1.228
+    validations:
+      required: true
+
+  - type: input
+    id: nsuk-version
+    attributes:
+      label: "New: Sim-U-Kraft version"
+      placeholder: 2.2.0
+    validations:
+      required: true
+
+  - type: input
+    id: ldlib2-version
+    attributes:
+      label: LDLib2 version
+      placeholder: 2.2.41
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and crash reports
+      description: |
+        Paste the relevant part of `logs/latest.log`, or attach
+        `crash-reports/crash-*.txt` and any NeoSimupack log lines.
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: packs
+    attributes:
+      label: Affected building packs
+      description: |
+        If the bug involves a specific pack, say which one (name, author,
+        version) and, when possible, attach the pack file.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I am using a release build, not a locally modified source tree.
+          required: false
+        - label: I have searched the existing issues for a duplicate.
+          required: true

@@ -1,0 +1,367 @@
+/*
+ * 筑艺坊 NeoSimupack 主题扩展样式表。
+ *
+ * 本文件叠加在 LDLib2 内置的 ore.lss 之上（见 SimuPackTheme.DEFAULT_STYLESHEET），
+ * 因此可以直接使用 ore.lss 中已注册的 built-in(ui-ore:...) 语义化纹理，
+ * 不需要自带贴图，也不需要猜测 sprite 坐标。
+ *
+ * 参考实现：LDLib2 2.2.41 assets/ldlib2/lss/ore.lss
+ *           NSUK 2.2.0  assets/simukraft/lss/ore.lss
+ */
+
+/* 全屏遮罩层：只负责压暗背景，不参与点击。 */
+.simupack_shell_panel {
+  background: rect(#B0000000);
+}
+
+/* 主窗口底板：颜色打底 + ore 边框纹理叠加，保证任何情况下都有可见背景。 */
+.simupack_window {
+  background: group(rect(#FF2B2B2B), built-in(ui-ore:BORDER_7));
+  padding-all: 6;
+  gap-all: 6;
+}
+
+/* 标题栏 */
+.simupack_title_bar {
+  background: group(rect(#FF3A3A3A), built-in(ui-ore:RECT));
+  padding-left: 8;
+  padding-right: 3;
+  padding-top: 2;
+  padding-bottom: 2;
+  gap-all: 6;
+}
+
+/* 分栏面板（拓展包列表 / 建筑列表 / 属性检查器 / 建筑树 / 预览） */
+.simupack_panel {
+  background: group(rect(#FF1F1F1F), built-in(ui-ore:BORDER_5));
+  padding-all: 6;
+  gap-all: 4;
+}
+
+/* 列表卡片 */
+.simupack_card {
+  background: group(rect(#FF262626), built-in(ui-ore:RECT));
+  padding-all: 6;
+  gap-all: 3;
+}
+
+/*
+ * 卡片但<b>左右不留白</b>：底色照旧，只把左右内边距去掉。
+ *
+ * <p>用途是让卡片里的内容（输入框、按钮）与它上方的分区标题<b>左边对齐</b>。
+ * 普通卡片的 padding-all: 6 会让内容整体缩进 6px，与标题错开一格 ——
+ * 而这里的分组靠底色就够辨认了，不需要再靠左右留白。
+ */
+.simupack_card_flush {
+  background: group(rect(#FF262626), built-in(ui-ore:RECT));
+  padding-top: 6;
+  padding-bottom: 6;
+  padding-left: 0;
+  padding-right: 0;
+  gap-all: 3;
+}
+
+/* 被选中的卡片 */
+.simupack_card_selected {
+  background: group(rect(#FF2E2E2E), built-in(ui-ore:WHITE_BORDER));
+  padding-all: 6;
+  gap-all: 3;
+}
+
+/* 存在格式错误的卡片：红色调 */
+.simupack_card_error {
+  background: group(rect(#FF3A2323), built-in(ui-ore:RECT));
+  padding-all: 6;
+  gap-all: 3;
+}
+
+/* 官方包徽章 */
+.simupack_badge_official {
+  background: built-in(ui-ore:BTN_DEFAULT_GREEN);
+  padding-all: 2;
+}
+
+/* 底部状态区 */
+.simupack_status_bar {
+  background: group(rect(#FF1F1F1F), built-in(ui-ore:BORDER_5));
+  padding-all: 4;
+  gap-all: 6;
+}
+
+/* 工具栏 */
+.simupack_toolbar {
+  background: group(rect(#FF333333), built-in(ui-ore:RECT));
+  padding-all: 3;
+  gap-all: 6;
+}
+
+/* 可编辑文本框：与只读/禁用控件保持视觉区分，同时保留输入焦点。 */
+.simupack_editable_field {
+  background: group(rect(#FF4B4654), built-in(ui-ore:RECT));
+}
+
+/* ── 顶栏菜单（VS Code 风格） ─────────────────────────────────────── */
+
+/* 侧栏收起/展开手柄：贴在中间区左右边缘的窄条，平时透明、只留一个字形。
+   整条都接收点击（它是按钮本身），所以不用再叠一个容器去做垂直居中。 */
+button.simupack_pane_handle:host {
+  base-background: rect(#00000000);
+  hover-background: rect(#44FFFFFF);
+  pressed-background: rect(#66FFFFFF);
+  padding-all: 0;
+}
+
+/* 菜单栏：一行扁平的菜单项，没有按钮外壳。 */
+button.simupack_menu_trigger:host {
+  base-background: rect(#00000000);
+  hover-background: rect(#33FFFFFF);
+  pressed-background: rect(#55FFFFFF);
+  padding-all: 1;
+  padding-left: 5;
+  padding-right: 5;
+}
+
+button.simupack_menu_trigger:host .__button_text__ {
+  color: #FFFFFFFF;
+  text-shadow: false;
+}
+
+/* 下拉面板 */
+.simupack_menu {
+  background: group(rect(#FF262626), built-in(ui-ore:BORDER_5));
+  padding-all: 3;
+  gap-all: 1;
+}
+
+/* 下拉项（VS Code 风格：左文字 + 右快捷键） */
+.simupack_menu_row {
+  background: rect(#00000000);
+  padding-all: 1;
+  padding-left: 5;
+  padding-right: 5;
+}
+
+/* 不可用的下拉项：置灰且不响应点击 */
+.simupack_menu_row_disabled {
+  background: rect(#00000000);
+  padding-all: 1;
+  padding-left: 5;
+  padding-right: 5;
+}
+
+/* 分组分隔线 */
+.simupack_menu_separator {
+  background: rect(#33FFFFFF);
+}
+
+/* 弹窗遮罩：拦截后面的点击 */
+.simupack_overlay {
+  background: rect(#99000000);
+}
+
+/* 弹窗面板 */
+.simupack_dialog {
+  background: group(rect(#FF2B2B2B), built-in(ui-ore:BORDER_7));
+  padding-all: 6;
+  gap-all: 4;
+}
+
+/* 建筑树节点：默认透明，方便挂右键菜单 */
+.simupack_tree_node {
+  padding-left: 2;
+  padding-right: 2;
+}
+
+/* 文字层级 */
+.simupack_text_primary {
+  color: #FFFFFFFF;
+}
+
+.simupack_text_secondary {
+  color: #FFE6E6E6;
+}
+
+.simupack_text_muted {
+  color: #FFBDBDBD;
+}
+
+.simupack_text_success {
+  color: #FF66FF66;
+}
+
+.simupack_text_warning {
+  color: #FFFFFF55;
+}
+
+.simupack_text_error {
+  color: #FFFF7777;
+}
+
+.simupack_text_info {
+  color: #FF66FFFF;
+}
+
+/* ── 工业动作组积木编辑器 ─────────────────────────────────────────── */
+
+/* 画布视口：这里才是有「画布感」的那一层。
+   之前只有变换层、而变换层没有底色，所以看上去「下面没有画布」——
+   空的地方直接露出了卡片底色，分不出哪里是可编辑的画布。 */
+.simupack_icanvas_host {
+  background: rect(#FF171717);
+}
+
+/* 变换层：积木与落点都在这一层里，本身不再自带底色/边框，
+   免得看起来像「卡片里又套了一张卡片」。 */
+.simupack_icanvas {
+  padding-all: 4;
+}
+
+/* 悬浮积木条：绝对定位贴在动作组卡片上方，不占布局空间。
+   内边距刻意压到 2：这一条只有 52px 高，要同时放下分类页签行和积木行。 */
+.simupack_ipalette_strip {
+  background: group(rect(#F0181818), built-in(ui-ore:BORDER_5));
+  padding-all: 3;
+}
+
+/* 三维预览画布：有底色，这样即使结构没读出来也能看见「画布」在哪，
+   并且和周围卡片区分开（和动作组画布同色）。 */
+.simupack_preview_canvas {
+  background: rect(#FF171717);
+}
+
+/* 点位/容器的引用块：可拖，拖进引用槽位就把名字填进去。
+   颜色刻意用中性蓝灰，与七个分类色区分开 —— 它不是一种「步骤」，而是一个「名字」。 */
+.simupack_iref {
+  background: rect(#FF46586A);
+}
+
+/* 积木条收起后留的细栏：只有展开按钮，保证永远能放回来。 */
+.simupack_ipalette_bar {
+  background: rect(#FF1E1E1E);
+  padding-all: 2;
+}
+
+/* 分类按钮的选中态**不走 LSS**：Button 的底色是 baseTexture 画的，
+   background 会被盖掉不生效。选中态在 Java 侧用 ButtonStyle 上色（见 paintButton）。 */
+
+/* ── Scratch 像素风积木 ──────────────────────────────────────────────
+   三个要点（和之前「彩色标题 + 深灰正文」的写法相反）：
+   1. 整块积木是**一个平涂的类别色**，标题和正文都透明，让它们融成一整块；
+   2. 参数是**嵌进色块里的暗色凹槽**——用一个半透明黑叠在类别色上，
+      于是「同一个颜色压暗一档」这件事一条规则就覆盖了全部 7 类，不必写 7 条；
+   3. 像素风**不用圆角、不做发光**：角是直角，立体感靠 1px 的亮顶边 / 暗底边。
+   外壳留 1px 内边距，选中时这 1px 就是选框，所以选中不会让布局抖动。 */
+
+.simupack_iblock {
+  background: rect(#00000000);
+  padding-all: 1;
+  gap-all: 0;
+}
+
+.simupack_iblock_selected {
+  background: rect(#FFFFE97F);
+  padding-all: 1;
+  gap-all: 0;
+}
+
+/* 染色板：整块积木的类别色都在这里。 */
+.simupack_iblock_plate {
+  padding-all: 0;
+  gap-all: 0;
+}
+
+.simupack_iblock_plate_move      { background: rect(#FF4A90D9); }
+.simupack_iblock_plate_hold      { background: rect(#FF2FA6A0); }
+.simupack_iblock_plate_material  { background: rect(#FFE08A2E); }
+.simupack_iblock_plate_container { background: rect(#FF8E5BD9); }
+.simupack_iblock_plate_block     { background: rect(#FF3FA45B); }
+.simupack_iblock_plate_entity    { background: rect(#FFD9578E); }
+.simupack_iblock_plate_flow      { background: rect(#FFD9B62E); }
+/* 未知 type：中性灰，一眼看出「这块不认识」。 */
+.simupack_iblock_plate_unknown   { background: rect(#FF5A5A5A); }
+
+/* 像素立体感：顶部亮一条、底部暗一条。 */
+.simupack_iblock_top {
+  background: rect(#40FFFFFF);
+}
+.simupack_iblock_bottom {
+  background: rect(#50000000);
+}
+
+/* 标题与正文：透明，让类别色透上来。 */
+.simupack_iblock_head {
+  padding-left: 3;
+  padding-right: 3;
+  padding-top: 1;
+  padding-bottom: 1;
+  gap-all: 2;
+}
+
+.simupack_iblock_body {
+  padding-left: 3;
+  padding-right: 3;
+  padding-bottom: 1;
+  gap-all: 2;
+}
+
+/* 接缝里的分隔线：很淡，只用来标明「这里是两块积木的边界」，
+   同时在静止时就暗示这里有插入位。刻意压到 12% 白 —— 一条 20 步的链有 21 条缝，
+   画亮了就是一片噪声，反而看不清积木本身。拖拽悬停时整条缝会亮成绿线（见 .simupack_idrop_hot）。 */
+.simupack_idrop_divider {
+  background: rect(#1FFFFFFF);
+}
+
+/* 悬浮参数卡的拖拽边：贴在卡片左/下边框内侧，拖动即改窗口大小。
+   压到 20% 白 —— 要能看出「这里可以拖」，但它是常驻元素，画亮了会抢参数区的注意力。 */
+.simupack_resize_grip {
+  background: rect(#33FFFFFF);
+}
+
+/* 容器库存浮层：半透明黑底，贴在鼠标旁边。
+   alpha 给到 D9（约 85%）：既看得清底下的方块，文字也压得住。 */
+.simupack_container_popup {
+  background: group(rect(#D9000000), built-in(ui-ore:RECT));
+  padding-all: 4;
+  gap-all: 2;
+}
+
+/* repeat 的内部链：嵌在色块里的暗色区域 + 左侧亮条表示「这些会被重复」。 */
+.simupack_iblock_inner {
+  background: rect(#40000000);
+  padding-left: 2;
+  padding-right: 2;
+  padding-top: 1;
+  padding-bottom: 1;
+  gap-all: 2;
+}
+
+/* 参数凹槽：半透明黑压在类别色上 = 同色压暗一档。
+   刻意**不加边框**：这么小的尺寸上 1px 边框会糊成一圈黑框，还会横穿标签文字，
+   看起来像「文字被划掉」。只留一层压暗就够读成「凹陷」了。 */
+.simupack_islot {
+  background: rect(#4D000000);
+  padding-left: 2;
+  padding-right: 2;
+  padding-top: 1;
+  padding-bottom: 1;
+  gap-all: 2;
+}
+
+/* 拖拽落点：平时完全透明，指针带着积木悬停时是一条亮像素线。 */
+.simupack_idrop {
+  background: rect(#00000000);
+}
+
+.simupack_idrop_hot {
+  background: rect(#FF7CFF7C);
+}
+
+/* 校验结果行。 */
+.simupack_iissue {
+  background: rect(#22FFFFFF);
+  padding-left: 3;
+  padding-right: 3;
+  padding-top: 1;
+  padding-bottom: 1;
+}
+

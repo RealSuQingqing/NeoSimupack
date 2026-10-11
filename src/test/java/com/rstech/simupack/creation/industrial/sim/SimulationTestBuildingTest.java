@@ -70,6 +70,11 @@ class SimulationTestBuildingTest {
 
         Map<String, String> layout = layout();
         String configText = configJson();
+        // 先记下注册前已经存在的建筑 id：下面那条断言要证明的是「注册 sim_test 没有挤掉原有建筑」，
+        // 所以必须和**注册前的实际状态**比。不能写成「工程里至少有 5 个建筑」—— 那个数字只在作者
+        // 本机的 run/ 工作区成立，而 run/ 不进版本库（见 .gitignore）：干净克隆里工程是空的，
+        // 一上来就注册这一座，绝对数量必然对不上（CI 上就是这么挂的）。
+        Set<String> buildingsBefore = registeredBuildingIds();
         writeStructure(nbtPath, layout);
         Files.writeString(jsonPath, configText, StandardCharsets.UTF_8);
         registerInProject(configText, layout);
@@ -95,8 +100,9 @@ class SimulationTestBuildingTest {
         // 注册的 jsonConfig 就是那份配置（界面读它，磁盘上的 .json 是产物）。
         assertEquals(configText, registered.get("jsonConfig").getAsString(),
                 "工程里存的配置要和生成的文件一致");
-        assertTrue(project.getAsJsonArray("buildings").size() >= 5,
-                "不能把原有建筑挤掉（原有 4 个 + sim_test）");
+        Set<String> buildingsAfter = registeredBuildingIds();
+        assertTrue(buildingsAfter.containsAll(buildingsBefore),
+                "不能把原有建筑挤掉（注册前 " + buildingsBefore + "，注册后 " + buildingsAfter + "）");
 
         // ── 自检 1：结构往返一致（写出去再读回来，逐块比对）──────────────
         Map<String, String> readBack = readStructure(nbtPath);
@@ -523,6 +529,31 @@ class SimulationTestBuildingTest {
             return;
         }
         throw new IOException("测试用跳读不支持标签类型 " + type);
+    }
+
+    /**
+     * 读工程里已经注册的建筑 id 集合。
+     *
+     * <p>{@code project.json} 或其中的 {@code buildings} 还不存在时返回空集合 —— 干净克隆
+     * （没有 {@code run/}）第一次跑就是这种情况。
+     */
+    private static Set<String> registeredBuildingIds() throws IOException {
+        Path projectFile = PROJECT.resolve("project.json");
+        if (!Files.isRegularFile(projectFile)) {
+            return Set.of();
+        }
+        JsonObject project = JsonParser.parseString(Files.readString(projectFile, StandardCharsets.UTF_8))
+                .getAsJsonObject();
+        if (!project.has("buildings")) {
+            return Set.of();
+        }
+        Set<String> ids = new LinkedHashSet<>();
+        for (JsonElement element : project.getAsJsonArray("buildings")) {
+            if (element.isJsonObject() && element.getAsJsonObject().has("id")) {
+                ids.add(element.getAsJsonObject().get("id").getAsString());
+            }
+        }
+        return ids;
     }
 
     /**
